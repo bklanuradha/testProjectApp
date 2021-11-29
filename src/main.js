@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import Page02 from './page02';
 
 const Home = ({navigation}) => {
     return(
@@ -12,17 +13,6 @@ const Home = ({navigation}) => {
     );
 };
 
-const Page02 = ({navigation})=> {
-    return(
-        <View style={styles.view}>
-            <Text style={styles.bodyText}>Welcome to Page02!</Text>
-            <Button title="Go to Home Screen!" onPress={() => navigation.navigate('Home')} />
-            <Button title="Go to Previous Page!" onPress={() => navigation.goBack()} />
-            <Button title="Go to First Page!" onPress={() => navigation.popToTop()} />
-            <Button title="Load this Screen Again!" onPress={() => navigation.push('Page 02')} />
-        </View>
-    );
-};
 
 const Stack = createStackNavigator();
 
@@ -30,8 +20,19 @@ class App extends Component{
     render(){
         return(
             <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name="Home" component={Home} />
+                <Stack.Navigator screenOptions={{
+                        headerStyle: {
+                            backgroundColor: '#0B020C',
+                        },
+                        headerTitleStyle: {
+                            color: '#ffffff',
+                            fontWeight: 'bold',
+                            fontSize: 24,
+                            fontFamily: 'roboto'
+                        },
+                        headerTintColor: '#ffffff'
+                    }} >
+                    <Stack.Screen name="Home" component={Home} options={{tytle: 'My Home'}} />
                     <Stack.Screen name="Page 02" component={Page02} />
                 </Stack.Navigator>
             </NavigationContainer>
@@ -50,6 +51,8 @@ const styles = StyleSheet.create({
     bodyText: {
         fontSize: 20,
     },
+
+    
 });
 
 export default App;
